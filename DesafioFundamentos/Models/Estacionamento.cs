@@ -22,7 +22,7 @@ namespace DesafioFundamentos.Models
             Console.WriteLine();
             Console.Write("Digite a placa do veículo para estacionar (Modelo Mercosul XXX0X00): ");
             string placa = Console.ReadLine().ToUpper();
-            string padraoPlaca = "^[A-Za-z]{3}[0-9]{1}[A-Za-z]{1}[0-9]{2}$";
+            string padraoPlaca = PadraoMercosul();
 
             if (Regex.IsMatch(placa, padraoPlaca))
             {
@@ -39,7 +39,7 @@ namespace DesafioFundamentos.Models
             }
             else
             {
-                Console.WriteLine("O padrão de placa digitado não atende ao esperado. Tente novamente.");
+                PlacaForaDoPadrao();
             }
 
         }
@@ -48,10 +48,11 @@ namespace DesafioFundamentos.Models
         {
 
             Console.WriteLine("Veículos disponíveis para remoção ");
-            Console.WriteLine(); 
+            Console.WriteLine();
             for (int i = 0; i < Veiculos.Count; i++)
             {
                 Console.WriteLine((i + 1) + "- Placa: " + Veiculos[i]);
+                Console.WriteLine();
             }
             Console.WriteLine();
             Console.Write("Digite a placa do veículo para remover (Modelo Mercosul XXX0X00): ");
@@ -59,7 +60,7 @@ namespace DesafioFundamentos.Models
 
 
             string placa = Console.ReadLine().ToUpper();
-            string padraoPlaca = "^[A-Za-z]{3}[0-9]{1}[A-Za-z]{1}[0-9]{2}$";
+            string padraoPlaca = PadraoMercosul();
 
             if (Regex.IsMatch(placa, padraoPlaca))
             {
@@ -107,7 +108,7 @@ namespace DesafioFundamentos.Models
             }
             else
             {
-                Console.WriteLine("O padrão de placa digitado não atende ao esperado. Tente novamente. ");
+                PlacaForaDoPadrao();
             }
             Console.WriteLine();
         }
@@ -123,8 +124,9 @@ namespace DesafioFundamentos.Models
                 Console.WriteLine("-------------------------------");
                 foreach (string veiculo in Veiculos)
                 {
-
+                    Console.WriteLine();
                     Console.WriteLine("Placa: " + veiculo.ToUpper());
+                    Console.WriteLine();
                     Console.WriteLine("-------------------------------");
 
                 }
@@ -134,6 +136,16 @@ namespace DesafioFundamentos.Models
             {
                 Console.WriteLine("Não há veículos estacionados.");
             }
+        }
+
+        public String PadraoMercosul()
+        {
+            return "^[A-Za-z]{3}[0-9]{1}[A-Za-z]{1}[0-9]{2}$";
+        }
+
+        public void PlacaForaDoPadrao()
+        {
+            Console.WriteLine("O padrão de placa digitado não atende ao esperado. Tente novamente. ");
         }
     }
 }
