@@ -20,9 +20,9 @@ namespace DesafioFundamentos.Models
         public void AdicionarVeiculo()
         {
             Console.WriteLine();
-            Console.Write("Digite a placa do veículo para estacionar (modelo xxx-0000): ");
+            Console.Write("Digite a placa do veículo para estacionar (Modelo Mercosul XXX0X00): ");
             string placa = Console.ReadLine().ToUpper();
-            string padraoPlaca = "^[A-Za-z]{3}-[0-9]{4}$";
+            string padraoPlaca = "^[A-Za-z]{3}[0-9]{1}[A-Za-z]{1}[0-9]{2}$";
 
             if (Regex.IsMatch(placa, padraoPlaca))
             {
@@ -50,13 +50,13 @@ namespace DesafioFundamentos.Models
             Console.WriteLine("Veículos disponíveis para remoção ");
             ListarVeiculos();
             Console.WriteLine();
-            Console.Write("Digite a placa do veículo para remover (modelo xxx-0000): ");
+            Console.Write("Digite a placa do veículo para remover (Modelo Mercosul XXX0X00): ");
            
             // Pedir para o usuário digitar a placa e armazenar na variável placa
             // *IMPLEMENTE AQUI*
 
             string placa = Console.ReadLine().ToUpper();
-            string padraoPlaca = "^[A-Za-z]{3}-[0-9]{4}$";
+            string padraoPlaca = "^[A-Za-z]{3}[0-9]{1}[A-Za-z]{1}[0-9]{2}$";
             // Verifica se o veículo existe
             if (Regex.IsMatch(placa, padraoPlaca))
             {
