@@ -1,7 +1,7 @@
 ﻿using DesafioFundamentos.Models;
 using System.Globalization;
 
-// Coloca o encoding para UTF8 para exibir acentuação
+
 Console.OutputEncoding = System.Text.Encoding.UTF8;
 
 decimal precoInicial = 0;
@@ -28,7 +28,7 @@ try
     }
 
 
-    // Instancia a classe Estacionamento, já com os valores obtidos anteriormente
+
     es = new Estacionamento(precoInicial, precoPorHora);
 }
 catch (FormatException)
@@ -42,7 +42,7 @@ catch (Exception e)
 
 bool exibirMenu = true;
 
-// Realiza o loop do menu
+
 while (exibirMenu)
 {
     Console.Clear();
