@@ -1,21 +1,44 @@
 ﻿using DesafioFundamentos.Models;
+using System.Globalization;
 
 // Coloca o encoding para UTF8 para exibir acentuação
 Console.OutputEncoding = System.Text.Encoding.UTF8;
 
-decimal precoInicial;
-decimal precoPorHora;
+decimal precoInicial = 0;
+decimal precoPorHora = 0;
 
-Console.Write("Seja bem vindo ao sistema de estacionamento!\n" +
-                  "Digite o preço inicial: ");
-precoInicial = Convert.ToDecimal(Console.ReadLine());
+Estacionamento es = new Estacionamento();
 
-Console.Write("Agora digite o preço por hora: ");
-precoPorHora = Convert.ToDecimal(Console.ReadLine());
 
-// Instancia a classe Estacionamento, já com os valores obtidos anteriormente
-Estacionamento es = new Estacionamento(precoInicial, precoPorHora);
 
+try
+{
+    Console.Write("Seja bem vindo ao sistema de estacionamento!\n" +
+              "Digite o preço inicial: ");
+    while (!decimal.TryParse(Console.ReadLine(), CultureInfo.InvariantCulture, out precoInicial))
+    {
+        Console.WriteLine("Entrada inválida. Por favor, digite um número válido.");
+        Console.Write("Digite o preço inicial: ");
+    }
+    Console.Write("Digite o preço por hora: ");
+    while (!decimal.TryParse(Console.ReadLine(), CultureInfo.InvariantCulture, out precoPorHora))
+    {
+        Console.WriteLine("Entrada inválida. Por favor, digite um número válido.");
+        Console.Write("Digite o preço por hora: ");
+    }
+
+
+    // Instancia a classe Estacionamento, já com os valores obtidos anteriormente
+    es = new Estacionamento(precoInicial, precoPorHora);
+}
+catch (FormatException)
+{
+    Console.WriteLine("Entrada inválida, insira valores válidos.");
+}
+catch (Exception e)
+{
+    Console.WriteLine("Ocorreu um erro inesperado: " + e.Message);
+}
 
 bool exibirMenu = true;
 
@@ -28,6 +51,9 @@ while (exibirMenu)
     Console.WriteLine("2 - Remover veículo");
     Console.WriteLine("3 - Listar veículos");
     Console.WriteLine("4 - Encerrar");
+    Console.WriteLine();
+
+    Console.Write("Sua escolha: ");
 
     switch (Console.ReadLine())
     {
