@@ -138,7 +138,7 @@ namespace DesafioFundamentos.Models
             }
         }
 
-        public String PadraoMercosul()
+        public string PadraoMercosul()
         {
             return "^[A-Za-z]{3}[0-9]{1}[A-Za-z]{1}[0-9]{2}$";
         }

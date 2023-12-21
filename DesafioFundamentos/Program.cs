@@ -54,6 +54,7 @@ while (exibirMenu)
     Console.WriteLine();
 
     Console.Write("Sua escolha: ");
+   
 
     switch (Console.ReadLine())
     {
@@ -77,7 +78,7 @@ while (exibirMenu)
             Console.WriteLine("Opção inválida");
             break;
     }
-
+    Console.WriteLine();
     Console.WriteLine("Pressione uma tecla para continuar");
     Console.ReadLine();
 }
