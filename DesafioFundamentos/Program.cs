@@ -4,8 +4,7 @@ using System.Globalization;
 
 Console.OutputEncoding = System.Text.Encoding.UTF8;
 
-decimal precoInicial = 0;
-decimal precoPorHora = 0;
+decimal precoInicial, precoPorHora;
 
 Estacionamento es = new Estacionamento();
 

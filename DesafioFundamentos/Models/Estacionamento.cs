@@ -85,7 +85,7 @@ namespace DesafioFundamentos.Models
 
                         Veiculos.Remove(placa);
 
-
+                        Console.WriteLine();
                         Console.WriteLine($"O veículo {placa} foi removido e o preço total foi de: R$ {valorTotal.ToString("F2", CultureInfo.InvariantCulture)}");
                     }
                     catch (FormatException)
