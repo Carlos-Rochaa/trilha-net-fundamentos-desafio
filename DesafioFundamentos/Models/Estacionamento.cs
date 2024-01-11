@@ -47,70 +47,78 @@ namespace DesafioFundamentos.Models
         public void RemoverVeiculo()
         {
 
-            Console.WriteLine("Veículos disponíveis para remoção ");
-            Console.WriteLine();
-            for (int i = 0; i < Veiculos.Count; i++)
+            if (!Veiculos.Any())
             {
-                Console.WriteLine((i + 1) + "- Placa: " + Veiculos[i]);
-                Console.WriteLine();
+                Console.WriteLine("Não existem veículos estacionados para remoção!");
             }
-            Console.WriteLine();
-            Console.Write("Digite a placa do veículo para remover (Modelo Mercosul XXX0X00): ");
-
-
-
-            string placa = Console.ReadLine().ToUpper();
-            string padraoPlaca = PadraoMercosul();
-
-            if (Regex.IsMatch(placa, padraoPlaca))
+            else
             {
-                if (Veiculos.Any(x => x.ToUpper() == placa.ToUpper()))
+
+                Console.WriteLine("Veículos disponíveis para remoção ");
+                Console.WriteLine();
+                for (int i = 0; i < Veiculos.Count; i++)
                 {
+                    Console.WriteLine((i + 1) + "- Placa: " + Veiculos[i]);
                     Console.WriteLine();
-                    Console.Write("Digite a quantidade de horas que o veículo permaneceu estacionado: ");
+                }
+                Console.WriteLine();
+                Console.Write("Digite a placa do veículo para remover (Modelo Mercosul XXX0X00): ");
 
-                    try
+
+
+                string placa = Console.ReadLine().ToUpper();
+                string padraoPlaca = PadraoMercosul();
+
+                if (Regex.IsMatch(placa, padraoPlaca))
+                {
+                    if (Veiculos.Any(x => x.ToUpper() == placa.ToUpper()))
                     {
-                        int horas = int.Parse(Console.ReadLine());
-                        while (horas <= 0)
-                        {
-                            Console.WriteLine("A quantidade de horas deve ser superior a 0!");
-                            Console.Write("Digite a quantidade de horas que o veículo permaneceu estacionado: ");
-                            horas = int.Parse(Console.ReadLine());
-                        }
-
-                        decimal valorTotal = PrecoInicial + PrecoPorHora * horas;
-
-
-
-                        Veiculos.Remove(placa);
-
                         Console.WriteLine();
-                        Console.WriteLine($"O veículo {placa} foi removido e o preço total foi de: R$ {valorTotal.ToString("F2", CultureInfo.InvariantCulture)}");
+                        Console.Write("Digite a quantidade de horas que o veículo permaneceu estacionado: ");
+
+                        try
+                        {
+                            int horas = int.Parse(Console.ReadLine());
+                            while (horas <= 0)
+                            {
+                                Console.WriteLine("A quantidade de horas deve ser superior a 0!");
+                                Console.Write("Digite a quantidade de horas que o veículo permaneceu estacionado: ");
+                                horas = int.Parse(Console.ReadLine());
+                            }
+
+                            decimal valorTotal = PrecoInicial + PrecoPorHora * horas;
+
+
+
+                            Veiculos.Remove(placa);
+
+                            Console.WriteLine();
+                            Console.WriteLine($"O veículo {placa} foi removido e o preço total foi de: R$ {valorTotal.ToString("F2", CultureInfo.InvariantCulture)}");
+                        }
+                        catch (FormatException)
+                        {
+                            Console.WriteLine("Entrada inválida para horas, digite um valor válido por favor.");
+                        }
+                        catch (OverflowException)
+                        {
+                            Console.WriteLine("Entrada inválida para horas, o número que você digitou excede o formato.");
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine("Ocorreu um erro inesperado: " + e.Message);
+                        }
                     }
-                    catch (FormatException)
+                    else
                     {
-                        Console.WriteLine("Entrada inválida para horas, digite um valor válido por favor.");
-                    }
-                    catch (OverflowException)
-                    {
-                        Console.WriteLine("Entrada inválida para horas, o número que você digitou excede o formato.");
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine("Ocorreu um erro inesperado: " + e.Message);
+                        Console.WriteLine("Desculpe, esse veículo não está estacionado aqui. Confira se digitou a placa corretamente");
                     }
                 }
                 else
                 {
-                    Console.WriteLine("Desculpe, esse veículo não está estacionado aqui. Confira se digitou a placa corretamente");
+                    PlacaForaDoPadrao();
                 }
+                Console.WriteLine();
             }
-            else
-            {
-                PlacaForaDoPadrao();
-            }
-            Console.WriteLine();
         }
 
         public void ListarVeiculos()

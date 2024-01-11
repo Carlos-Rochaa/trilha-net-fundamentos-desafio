@@ -54,7 +54,7 @@ while (exibirMenu)
     Console.WriteLine();
 
     Console.Write("Sua escolha: ");
-   
+
 
     switch (Console.ReadLine())
     {
